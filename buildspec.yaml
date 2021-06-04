@@ -24,6 +24,3 @@ reports:
       - "target/surefire-reports/**/*"
     discard-paths: no
     file-format: TestNGXml
-artifacts:
-    files:
-      - target/surefire-reports/index.html
