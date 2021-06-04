@@ -2,7 +2,7 @@ version: 0.2
 phases:
   build:
     commands:
-      - echo mvn -v
+      - mvn -v
       - mvn clean test -DsuiteXmlFile="src/test/resources/runner/sanity.xml"
       - echo Build started on `date`
       - | # saving result for conditional rollback
