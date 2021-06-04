@@ -11,7 +11,3 @@ reports:
       - "reports/**/*"
     discard-paths: no
     file-format: TestNGXml
-artifacts:
-  files:
-    - '**/*'
-    discard-paths: yes
