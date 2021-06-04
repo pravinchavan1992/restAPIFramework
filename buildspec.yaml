@@ -11,10 +11,17 @@ phases:
         else
             echo "tests all passed" && echo "Pass" > result.txt;
         fi
+  post_build:
+    commands:
+      - aws s3 --recursive rm s3://testreportbuckect/emailable-report.html
+      - aws s3 cp ./target/surefire-reports/emailable-report.html  s3://testreportbuckect/emailable-report.html
+      - aws s3 --recursive rm s3://testreportbuckect/index.html
+      - aws s3 cp ./target/surefire-reports/index.html  s3://testreportbuckect/index.html
+
 reports:
   rest-api-automation:
     files:
-      - "reports/**/*"
+      - "target/surefire-reports/**/*"
     discard-paths: no
     file-format: TestNGXml
 artifacts:
