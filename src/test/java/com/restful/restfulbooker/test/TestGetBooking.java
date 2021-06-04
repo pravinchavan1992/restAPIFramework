@@ -13,17 +13,16 @@ import java.util.Map;
 public class TestGetBooking {
 
     @Test(groups = {Groups.All, Groups.Regression, Groups.Sanity})
-    public void TestBookingDetails(){
+    public void TestBookingDetails() {
         Booking booking = new Booking();
         List<Integer> allBooking = booking.getBooking().jsonPath().getList("bookingid");
-        allBooking.stream().forEach(id->{
-            Response bookingByID = booking.getBookingById(id, HttpStatus.SC_OK);
-            String fname = bookingByID.jsonPath().get("firstname");
-            String lname = bookingByID.jsonPath().get("lastname");
-            int totalprice = bookingByID.jsonPath().get("totalprice");
-            boolean depositpaid = bookingByID.jsonPath().get("depositpaid");
-            String additionalneeds = bookingByID.jsonPath().get("additionalneeds");
-            Map<String, Date> bookingdates = bookingByID.jsonPath().getMap("bookingdates");
-        });
+        Response bookingByID = booking.getBookingById(allBooking.get(0), HttpStatus.SC_OK);
+        String fname = bookingByID.jsonPath().get("firstname");
+        String lname = bookingByID.jsonPath().get("lastname");
+        int totalprice = bookingByID.jsonPath().get("totalprice");
+        boolean depositpaid = bookingByID.jsonPath().get("depositpaid");
+        String additionalneeds = bookingByID.jsonPath().get("additionalneeds");
+        Map<String, Date> bookingdates = bookingByID.jsonPath().getMap("bookingdates");
+
     }
 }

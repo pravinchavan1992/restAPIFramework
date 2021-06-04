@@ -1,0 +1,17 @@
+version: 0.2
+phases:
+  build:
+    commands:
+      - echo mvn -v
+      - mvn clean install test -DsuiteXmlFile="src/test/resources/runner/sanity.xml"
+      - echo Build started on `date`
+reports:
+  rest-api-automation:
+    files:
+      - "reports/**/*"
+    discard-paths: no
+    file-format: TestNGXml
+artifacts:
+  files:
+    - '**/*'
+    discard-paths: yes
