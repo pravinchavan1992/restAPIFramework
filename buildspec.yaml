@@ -22,4 +22,4 @@ reports:
   SurefireReports:
     files:
       - '**/*'
-    base-directory: 'target/surefire-reports'
+    base-directory: 'target/surefire-reports/testng-results.xml'
