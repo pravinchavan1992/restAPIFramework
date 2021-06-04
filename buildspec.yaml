@@ -3,8 +3,14 @@ phases:
   build:
     commands:
       - echo mvn -v
-      - mvn clean install test -DsuiteXmlFile="src/test/resources/runner/sanity.xml"
+      - mvn clean test -DsuiteXmlFile="src/test/resources/runner/sanity.xml"
       - echo Build started on `date`
+      - | # saving result for conditional rollback
+        if grep -q "Failure:" target/surefire-reports/index.html; then
+            echo "tests has failures!" && echo "Fail" > result.txt && exit 1;
+        else
+            echo "tests all passed" && echo "Pass" > result.txt;
+        fi
 reports:
   rest-api-automation:
     files:
@@ -12,6 +18,5 @@ reports:
     discard-paths: no
     file-format: TestNGXml
 artifacts:
-  files:
-    - '**/*'
-    discard-paths: yes
+    files:
+      - target/surefire-reports/index.html
