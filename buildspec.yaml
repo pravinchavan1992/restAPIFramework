@@ -19,8 +19,7 @@ phases:
       - aws s3 cp ./target/surefire-reports/index.html  s3://testreportbuckect/index.html
 
 reports:
-  rest-api-automation:
+  SurefireReports:
     files:
-      - "target/surefire-reports/**/*"
-    discard-paths: no
-    file-format: TestNGXml
+      - '**/*'
+    base-directory: 'target/surefire-reports'
